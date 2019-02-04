@@ -1,0 +1,64 @@
+<ion-content padding>
+  <!-- <h4 text-center>Digitalisasi Data</h4> -->
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Tarik untuk pembaruan"
+        refreshingSpinner="circles"
+        refreshingText="Pembaruan...">
+      </ion-refresher-content>
+  </ion-refresher>
+  
+  <div>
+    <ion-segment [(ngModel)]="digitalisasi">
+      <ion-segment-button value="min">
+        Dibawah 90%
+      </ion-segment-button>
+      <ion-segment-button value="max">
+        Diatas 90%
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="digitalisasi">
+
+    <ion-list *ngSwitchCase="'min'">
+      <ion-item *ngFor="let item of itemsmin"> 
+        <p>{{item.nama}}</p>
+        <span item-end>{{item.persen}}%</span>
+      </ion-item>
+      <div style="display: block">
+        <canvas 
+          baseChart
+          [data]="doughnutChartData"
+          [labels]="doughnutChartLabels"
+          [chartType]="doughnutChartType"
+          [legend]="doughnutChartLegend"
+          (chartHover)="chartHovered($event)">
+        </canvas>
+      </div>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'max'">
+      <div *ngIf="available">
+        <ion-item *ngFor="let item of itemsmax"> 
+          <p>{{item.nama}}</p>
+          <span item-end>{{item.persen}}%</span>
+        </ion-item>
+      </div>
+    </ion-list>
+
+    <ion-list no-lines>
+      <ion-item text-right>
+        <button ion-button outline small>
+          <ion-icon name="search"></ion-icon>
+          View Detail
+        </button>
+      </ion-item>
+    </ion-list>
+
+
+  </div>
+
+</ion-content>

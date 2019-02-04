@@ -1,0 +1,50 @@
+<ion-content padding>
+  <!-- <h4 text-center>Tempat Usaha</h4> -->
+  <div>
+    <ion-segment [(ngModel)]="tempatUsaha">
+      <ion-segment-button value="terisi">
+        Terisi
+      </ion-segment-button>
+      <ion-segment-button value="kosong">
+        Kosong
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="tempatUsaha">
+
+    <ion-list *ngSwitchCase="'terisi'">
+      <ion-item *ngFor="let item of items"> 
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6>{{item.nama}}</ion-col>
+            <ion-col col-3 text-right><small>{{item.jumlah_pedagang}} <ion-icon name="body"></ion-icon></small></ion-col>
+            <ion-col col-3 text-right><small>{{item.jumlah_kios}} <ion-icon name="home"></ion-icon></small></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'kosong'">
+      <ion-item *ngFor="let item of itemskosong"> 
+        <ion-grid>
+          <ion-row>
+            <ion-col col-8>{{item.nama}}</ion-col>
+            <ion-col col-4 text-right><small>{{item.jumlah_kosong}} <ion-icon name="home"></ion-icon></small></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+
+    <ion-list no-lines>
+      <ion-item text-right>
+        <button ion-button outline small>
+          <ion-icon name="search"></ion-icon>
+          View Detail
+        </button>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+</ion-content>

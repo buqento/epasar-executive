@@ -1,0 +1,57 @@
+<ion-content padding>
+  <!-- <h4 text-center>Retribusi</h4> -->
+  <ion-list>
+    <ion-item>
+      <ion-label><strong>Tanggal Awal</strong></ion-label>
+      <ion-icon name="calendar" item-end></ion-icon>
+      <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DDDD MMMM YYYY" [(ngModel)]="fTanggal"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label><strong>Tanggal Akhir</strong></ion-label>
+      <ion-icon name="calendar" item-end></ion-icon>
+      <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="DDDD MMMM YYYY" [(ngModel)]="tTanggal"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <button ion-button outline (click)="setTanggal()" small>Tampil</button>
+    </ion-item>
+  </ion-list>
+
+  <div>
+    <ion-segment [(ngModel)]="retribusi">
+      <ion-segment-button value="sudah">
+        Sudah Bayar
+      </ion-segment-button>
+      <ion-segment-button value="belum">
+        Belum Bayar
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="retribusi">
+
+    <ion-list *ngSwitchCase="'sudah'">
+      <ion-item *ngFor="let item of itemssudahbayar"> 
+        <p>{{item.nama}}</p>
+        <span item-end><small>Rp.{{item.jumlah_tagihan}}</small></span>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'belum'">
+      <ion-item *ngFor="let item of itemsbelumbayar"> 
+        <p>{{item.nama}}</p>
+        <span item-end><small>Rp.{{item.jumlah_tagihan}}</small></span>
+      </ion-item>
+    </ion-list>
+
+    <ion-list no-lines>
+      <ion-item text-right>
+        <button ion-button outline small>
+          <ion-icon name="search"></ion-icon>
+          View Detail
+        </button>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+</ion-content>

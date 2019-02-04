@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Pengaturan</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-divider>
+        <strong>Data Profil</strong>
+    </ion-item-divider>
+    <ion-item>
+        <ion-icon name="person" item-start></ion-icon>
+        {{username}}
+    </ion-item>
+    <ion-item>
+        <ion-icon name="mail" item-start></ion-icon>
+        {{email}}
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <button ion-item (click)="logOut()">
+        <ion-icon name="log-out" item-start></ion-icon>
+        Keluar
+    </button>
+  </ion-list>
+</ion-content>
